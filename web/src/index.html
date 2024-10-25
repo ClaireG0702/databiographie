@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/index.css">
+    <title>Data biographie</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <header class="header">
+        <nav class="navigation">
+            <a class="link active" href="#">Prologue</a>
+            <a class="link" href="./first-week.html">Semaine 1</a>
+            <a class="link" href="./second-week.html">Semaine 2</a>
+            <a class="link" href="./third-week.html">Semaine 3</a>
+            <!-- <a class="link" href="./summary.html">Résumé</a> -->
+        </nav>
+    </header>
+
+    <div class="content">
+        <div class="content-wrapper">
+            <p class="first-prologue-text">Cela peut paraître bizarre, mais je n'ai jamais vraiment aimé les téléphones
+                et
+                les nouvelles technologies.
+                Enfant, influencée par les adultes qui répétaient sans cesse "Et comment on faisait nous avant sans tous
+                ces
+                trucs ?", je partageais leur mépris. À cette époque, j'étais persuadé que la multiplication des faits
+                divers
+                était simplement due à notre surexposition aux informations. Pour moi, les technologies apportaient
+                principalement des mauvaises nouvelles et cultivaient la paranoïa.</p>
+            <p class="second-prologue-text">Très vite cependant, j'ai compris que les téléphones et ordinateurs étaient
+                indispensables pour avancer dans
+                la vie moderne : impossible de s'inscrire à un club de sport ou même à un programme de fidélité sans
+                numéro
+                de téléphone. Mon premier téléphone, que j'ai eu au collège, a très vite conforté cette impression.
+                Depuis,
+                comme tout le monde, je ne peux plus vraiment m'en passer. Aujourd'hui, je vois ces outils comme ce
+                qu'ils
+                sont : des moyens pratiques, dont chacun choisit l'usage. Dans cette biographie numérique, je vais
+                retracer
+                trois semaines d'utilisation de mon téléphone, révélant mon rapport avec cet outil devenu indispensable.
+            </p>
+
+            <p>
+                Ainsi, au-delà des réticences initiales, mon téléphone est devenu un compagnon quotidien, presque malgré
+                moi, un miroir numérique de mes habitudes et de mes besoins. Ces trois semaines passées à analyser mon
+                usage me rappellent à quel point cet appareil rythme mes journées de manière invisible mais
+                omniprésente, entre communication, organisation et divertissement. Plongeons dans le détail de cette
+                première semaine, révélatrice de mon rapport ambivalent et pragmatique avec cet outil.
+            </p>
+
+            <div>
+                <canvas id="chart"></canvas>
+            </div>
+
+            <div class="buttons">
+                <button class="left-btn" hidden><a href="#">Précédent</a></button>
+                <button class="right-btn"><a href="./first-week.html">Suivant</a></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const labels = [
+            'Lun. 30 sept.', 'Mar. 1 oct.', 'Mer. 2 oct.', 'Jeu. 3 oct.', 'Ven. 4 oct.',
+            'Sam. 5 oct.', 'Dim. 6 oct.', 'Lun. 7 oct.', 'Mar. 8 oct.', 'Mer. 9 oct.',
+            'Jeu. 10 oct.', 'Ven. 11 oct.', 'Sam. 12 oct.', 'Dim. 13 oct.',
+            'Lun. 14 oct.', 'Mar. 15 oct.', 'Mer. 16 oct.', 'Jeu. 17 oct.', 'Ven. 18 oct.',
+            'Sam. 19 oct.', 'Dim. 20 oct.'
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Temps d\'utilisation (heures)',
+                data: [
+                    2 + 19 / 60, 3 + 16 / 60, 3 + 9 / 60, 7 + 12 / 60, 6 + 2 / 60,
+                    3 + 20 / 60, 2 + 26 / 60, 6 + 13 / 60, 4 + 13 / 60, 1 + 2 / 60,
+                    3 + 7 / 60, 3 + 18 / 60, 1 + 42 / 60, 1 + 6 / 60,
+                    2 + 46 / 60, 3 + 51 / 60, 4 + 27 / 60, 3 + 22 / 60, 4 + 59 / 60,
+                    1, 55 / 60
+                ],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+                tension: 0.1
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Temps d\'utilisation (heures)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Jours'
+                        }
+                    }
+                },
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                let hours = Math.floor(tooltipItem.raw);
+                                let minutes = Math.round((tooltipItem.raw - hours) * 60);
+                                return hours + ' h ' + minutes + ' min';
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const myChart = new Chart(
+            document.getElementById('chart'),
+            config
+        );
+    </script>
+</body>
+
+</html>

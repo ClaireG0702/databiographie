@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/third-week.css">
+    <title>Data biographie - Semaine 3</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <header class="header">
+        <nav class="navigation">
+            <a class="link" href="./index.html">Prologue</a>
+            <a class="link" href="./first-week.html">Semaine 1</a>
+            <a class="link" href="./second-week.html">Semaine 2</a>
+            <a class="link active" href="#">Semaine 3</a>
+            <!-- <a class="link" href="./summary.html">Résumé</a> -->
+        </nav>
+    </header>
+
+    <div class="content">
+        <div class="content-wrapper">
+            <h2>Troisième semaine : 14 octobre - 20 octobre</h2>
+            <div>
+                <canvas id="third-week-chart"></canvas>
+            </div>
+            <div>
+                <div>
+                    <p>C'est sans surprise que les applications les plus utilisées cette semaine sont Waze et Instagram,
+                        avec respectivement <strong>7&nbsp;heures et 51&nbsp;minutes</strong> et <strong>3&nbsp;heures
+                            et 54&nbsp;minutes</strong>. J'apprécie le confort des
+                        routines donc pour rien au monde je changerais mes habitudes, du moins pas tant que je ne suis
+                        pas
+                        convaincu à 100 % qu'il y ait une bonne raison de changer.</p>
+                </div>
+                <div>
+                    <p>Une des activités les plus intensives cette semaine sur mon téléphone était la recherche Google
+                        avec
+                        <strong>1&nbsp;heure et 16&nbsp;minutes</strong> d'utilisation. La raison est simple : la
+                        cuisine, si j'ai
+                        passé autant de
+                        temps sur Google c'est uniquement pour pouvoir suivre une recette, où là encore j'ai ce besoin
+                        de
+                        vérification. Je regarde toujours au moins 2 ou 3 fois avant de faire une étape pour être sûre
+                        de ne
+                        pas me tromper sur les quantités de chaque ingrédient.
+                    </p>
+                </div>
+                <div>
+                    <p>Côté divertissement cette fois-ci ce n'est pas sur Disney+ que j'ai passé du temps mais sur une
+                        application de Sudoku. J'ai toujours aimé ce jeu, j'en faisais quasiment tous les soirs lorsque
+                        j'étais au collège, et malgré le fait que je passe beaucoup moins de temps sur cette activité il
+                        m'arrive encore d'en faire, notamment lorsque je dois patienter, que ce soit dans une file
+                        d'attente
+                        ou en attendant le prochain cours. Ici, c'est la deuxième option, j'ai passé
+                        <strong>30&nbsp;minutes</strong> de la
+                        semaine à faire des sudokus entre les cours. </p>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button class="left-btn"><a href="./second-week.html">Précédent</a></button>
+                <button class="right-btn" hidden><a href="#">Suivant</a></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const labels = [
+            'Waze', 
+            'Maps', 
+            'Instagram', 
+            'Messages', 
+            'WhatsApp', 
+            'Discord', 
+            'Google', 
+            'TimeCalendar', 
+            'Jow',
+            'Uber Eats', 
+            'Disney+', 
+            'Sudoku', 
+            'Spotify', 
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Temps d\'utilisation (heures)',
+                data: [
+                    7 + 51 / 60, //Waze
+                    34 / 60, //Maps
+                    3 + 54 / 60, //Insta
+                    1 + 8 / 60, //Msg
+                    18 / 60, //WhatsApp
+                    50 / 60, //Discord
+                    1 + 16 / 60, //Google
+                    5 / 60, //timecalandar
+                    1 / 60, //jow
+                    0, //Ubereats
+                    0, //disney+
+                    30 / 60, //sudoku
+                    15 / 60, //Spotify
+                ],
+                backgroundColor: [
+                    'rgba(51, 204, 255, 0.2)',
+                    'rgba(212, 61, 53, 0.2)',
+                    'rgba(254, 8, 98, 0.2)',
+                    'rgba(0, 87, 204, 0.2)',
+                    'rgba(50, 213, 79, 0.2)',
+                    'rgba(112, 133, 214, 0.2)',
+                    'rgba(212, 61, 53, 0.2)',
+                    'rgba(250, 152, 242, 0.2)',
+                    'rgba(244, 72, 49, 0.2)',
+                    'rgba(6, 193, 103, 0.2)',
+                    'rgba(4, 30, 91, 0.2)',
+                    'rgba(51, 51, 51, 0.2)',
+                    'rgba(30, 210, 94, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(51, 204, 255, 1)',
+                    'rgba(212, 61, 53, 1)',
+                    'rgba(254, 8, 98, 1)',
+                    'rgba(0, 87, 204, 1)',
+                    'rgba(50, 213, 79, 1)',
+                    'rgba(112, 133, 214, 1)',
+                    'rgba(212, 61, 53, 1)',
+                    'rgba(250, 152, 242, 1)',
+                    'rgba(244, 72, 49, 1)',
+                    'rgba(6, 193, 103, 1)',
+                    'rgba(4, 30, 91, 1)',
+                    'rgba(51, 51, 51, 1)',
+                    'rgba(30, 210, 94, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Temps d\'utilisation (heures)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Applications'
+                        }
+                    }
+                },
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                let hours = Math.floor(tooltipItem.raw);
+                                let minutes = Math.round((tooltipItem.raw - hours) * 60);
+                                return hours + ' h ' + minutes + ' min';
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const barChart = new Chart(
+            document.getElementById('third-week-chart'),
+            config
+        );
+    </script>
+</body>
+
+</html>

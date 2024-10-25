@@ -1,0 +1,38 @@
+html, body {
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header  {
+    background-color: #efefef;
+}
+
+.navigation {
+    width: 40%;
+    padding: 24px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.link {
+    color: #333;
+    text-decoration: none;
+}
+
+.active {
+    font-weight: bold;
+}
+
+
+.content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-wrapper {
+    width: 80%;
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/first-week.css">
+    <title>Data biographie - Semaine 1</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <header class="header">
+        <nav class="navigation">
+            <a class="link" href="./index.html">Prologue</a>
+            <a class="link active" href="#">Semaine 1</a>
+            <a class="link" href="./second-week.html">Semaine 2</a>
+            <a class="link" href="./third-week.html">Semaine 3</a>
+            <!-- <a class="link" href="./summary.html">Résumé</a> -->
+        </nav>
+    </header>
+
+    <div class="content">
+        <div class="content-wrapper">
+            <h2>Première semaine : 30 septembre - 6 octobre</h2>
+            <div>
+                <canvas id="first-week-chart"></canvas>
+            </div>
+            <div>
+                <div>
+                    <p>Cette semaine, j'ai passée <strong>27&nbsp;heures et 44&nbsp;minutes</strong> sur mon téléphone, Instagram
+                        est l'application la
+                        plus utilisée avec <strong>10&nbsp;heures et 43&nbsp;minutes</strong>, dont <strong>5&nbsp;heures</strong> en une
+                        seule journée le jeudi 3 octobre.
+                        Curieusement, je n'y poste presque jamais rien, mais je peux passer des heures à scroller sur la
+                        page de découverte. J'y trouve des inspirations, principalement des dessins, des photos et des
+                        recettes de cuisine. Mon fil est désormais très personnalisé et aligné sur mes centres
+                        d'intérêt.
+                    </p>
+                </div>
+                <div>
+                    <p>Waze et Maps, mes deux fidèles compagnons de navigation, ont été utilisés respectivement
+                        <strong>8&nbsp;heures et 8&nbsp;minutes</strong> et <strong>1&nbsp;heure et 21&nbsp;minutes</strong>. Même si je connais les trajets par
+                        cœur, je les utilise constamment.
+                        Waze est essentiel pour anticiper les bouchons en temps réel, tandis que Maps prend le relais
+                        pour
+                        les trajets à pied. Le GPS est devenu pour moi une sorte de filet de sécurité, un moyen de
+                        m'assurer
+                        que je ne me trompe jamais de route ou d'estimation du temps de trajet.</p>
+                </div>
+                <div>
+                    <p>Le moment le plus surprenant de la semaine a été l'utilisation de Disney+ pendant <strong>40&nbsp;minutes</strong>, et non,
+                        je n'étais pas dans les transports. Chez moi, avec un ordinateur et une télévision à
+                        disposition,
+                        j'ai tout de même regardé un épisode sur mon téléphone. Pourquoi ? Peut-être simplement par
+                        paresse,
+                        par habitude de tout faire depuis cet objet qui est toujours à portée de main.</p>
+                </div>
+                <div>
+                    <p>Enfin, Uber Eats, avec <strong>43&nbsp;minutes</strong> d'utilisation, illustre bien mon rapport
+                        complexe avec les appels.
+                        Je laisse souvent l'application ouverte après avoir passé commande, pour surveiller l'heure
+                        d'arrivée du livreur et éviter qu'il ne m'appelle. Ces petits moments montrent bien mon attitude
+                        partagée face aux interactions en ligne. D'un côté, je les trouve nécessaires, mais de l'autre,
+                        je
+                        rejette certaines formes de communication, comme les appels téléphoniques, que je n'aime
+                        toujours
+                        pas.</p>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button class="left-btn"><a href="./index.html">Précédent</a></button>
+                <button class="right-btn"><a href="./second-week.html">Suivant</a></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const labels = [
+            'Waze', 
+            'Maps', 
+            'Instagram', 
+            'Messages', 
+            'WhatsApp', 
+            'Discord', 
+            'Google', 
+            'TimeCalendar', 
+            'Jow',
+            'Uber Eats', 
+            'Disney+', 
+            'Sudoku', 
+            'Spotify', 
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Temps d\'utilisation (heures)',
+                data: [
+                    8 + 8 / 60, //waze
+                    1 + 21 / 60, //maps
+                    10 + 43 / 60, //insta
+                    1 + 21 / 60, // msg
+                    49 / 60, //whatsapps
+                    53 / 60,//discprd
+                    17 / 60, //google
+                    11 / 60,//timecalendar
+                    0, //jow
+                    43 / 60, //uber
+                    40 / 60, //disney
+                    0, //sudoku
+                    20 / 60 // spotify
+                ],
+                backgroundColor: [
+                    'rgba(51, 204, 255, 0.2)',
+                    'rgba(212, 61, 53, 0.2)',
+                    'rgba(254, 8, 98, 0.2)',
+                    'rgba(0, 87, 204, 0.2)',
+                    'rgba(50, 213, 79, 0.2)',
+                    'rgba(112, 133, 214, 0.2)',
+                    'rgba(212, 61, 53, 0.2)',
+                    'rgba(250, 152, 242, 0.2)',
+                    'rgba(244, 72, 49, 0.2)',
+                    'rgba(6, 193, 103, 0.2)',
+                    'rgba(4, 30, 91, 0.2)',
+                    'rgba(51, 51, 51, 0.2)',
+                    'rgba(30, 210, 94, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(51, 204, 255, 1)',
+                    'rgba(212, 61, 53, 1)',
+                    'rgba(254, 8, 98, 1)',
+                    'rgba(0, 87, 204, 1)',
+                    'rgba(50, 213, 79, 1)',
+                    'rgba(112, 133, 214, 1)',
+                    'rgba(212, 61, 53, 1)',
+                    'rgba(250, 152, 242, 1)',
+                    'rgba(244, 72, 49, 1)',
+                    'rgba(6, 193, 103, 1)',
+                    'rgba(4, 30, 91, 1)',
+                    'rgba(51, 51, 51, 1)',
+                    'rgba(30, 210, 94, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Temps d\'utilisation (heures)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Applications'
+                        }
+                    }
+                },
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                let hours = Math.floor(tooltipItem.raw);
+                                let minutes = Math.round((tooltipItem.raw - hours) * 60);
+                                return hours + ' h ' + minutes + ' min';
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const barChart = new Chart(
+            document.getElementById('first-week-chart'),
+            config
+        );
+    </script>
+</body>
+
+</html>

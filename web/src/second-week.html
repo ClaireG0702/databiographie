@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/second-week.css">
+    <title>Data biographie - Semaine 2</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <header class="header">
+        <nav class="navigation">
+            <a class="link" href="./index.html">Prologue</a>
+            <a class="link" href="./first-week.html">Semaine 1</a>
+            <a class="link active" href="#">Semaine 2</a>
+            <a class="link" href="./third-week.html">Semaine 3</a>
+            <!-- <a class="link" href="./summary.html">Résumé</a> -->
+        </nav>
+    </header>
+
+    <div class="content">
+        <div class="content-wrapper">
+            <h2>Deuxième semaine : 7 octobre - 13 octobre</h2>
+            <div>
+                <canvas id="second-week-chart"></canvas>
+            </div>
+            <div>
+                <div>
+                    <p>Avec <strong>20&nbsp;heures et 41&nbsp;minutes</strong> d'utilisation cette semaine, encore une fois les
+                        applications les plus utilisées sont les GPS et Instagram, avec <strong>8&nbsp;heures et 8&nbsp;minutes</strong> pour Waze
+                        et <strong>3&nbsp;heures et 15&nbsp;minutes</strong> pour Instagram. Il y a une nette différence entre
+                        cette semaine et
+                        la précédente concernant mon temps passé sur les réseaux sociaux, cela s'explique par la
+                        différence de temps libre,
+                        en effet cette semaine était plus chargé en cours.</p>
+                </div>
+                <div>
+                    <p>La communication quant à elle a pris un peu plus d'importance, notamment via WhatsApp,
+                        application
+                        sur laquelle j'ai passé <strong>1&nbsp;heure et 29&nbsp;minutes</strong>. Une bonne partie de ce temps a été
+                        dédiée à
+                        l'organisation d'une soirée, une tâche qui peut rapidement devenir chronophage lorsque chacun a
+                        des
+                        disponibilités différentes. Je fixe souvent l'écran en attendant des réponses, espérant
+                        inconsciemment que cela accélère la conversation. En réalité, je laisse souvent mon téléphone
+                        déverrouillé simplement pour ne pas rater de notification.</p>
+                </div>
+                <div>
+                    <p>Côté organisation, l'application Jow a été utile. Elle m'a aidé à planifier mes repas avec ses
+                        suggestions de recettes, ce qui m'a pris <strong>16&nbsp;minutes</strong>, un temps précieux quand je
+                        manque
+                        d'inspiration
+                        pour mes courses. Une autre application m'a également pris <strong>15&nbsp;minutes</strong> de mon
+                        temps,
+                        TimeCalendar,
+                        afin de répondre à mon besoin de vérification constante, comme celui de mon emploi du temps
+                        avant
+                        chaque cours, montre bien ma dépendance à la technologie pour structurer mes journées, même si,
+                        au
+                        fond, je connais déjà ces informations.</p>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button class="left-btn"><a href="./first-week.html">Précédent</a></button>
+                <button class="right-btn"><a href="./third-week.html">Suivant</a></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const labels = [
+            'Waze', 
+            'Maps', 
+            'Instagram', 
+            'Messages', 
+            'WhatsApp', 
+            'Discord', 
+            'Google', 
+            'TimeCalendar', 
+            'Jow',
+            'Uber Eats', 
+            'Disney+', 
+            'Sudoku', 
+            'Spotify', 
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Temps d\'utilisation (heures)',
+                data: [
+                    8 + 8 / 60, //waze
+                    2 / 60, //maps
+                    3 + 15 / 60, //insta
+                    2 + 38 / 60, //msg
+                    1 + 29 / 60, //whatsapp
+                    1 + 4 / 60, //discord
+                    12 / 60, //google
+                    14 / 60, //timecalendar
+                    16 / 60, //jow
+                    0, //uber
+                    0, //disney
+                    9 / 60,//sudoku
+                    16 / 60, //spotify
+                ],
+                backgroundColor: [
+                    'rgba(51, 204, 255, 0.2)',
+                    'rgba(212, 61, 53, 0.2)',
+                    'rgba(254, 8, 98, 0.2)',
+                    'rgba(0, 87, 204, 0.2)',
+                    'rgba(50, 213, 79, 0.2)',
+                    'rgba(112, 133, 214, 0.2)',
+                    'rgba(212, 61, 53, 0.2)',
+                    'rgba(250, 152, 242, 0.2)',
+                    'rgba(244, 72, 49, 0.2)',
+                    'rgba(6, 193, 103, 0.2)',
+                    'rgba(4, 30, 91, 0.2)',
+                    'rgba(51, 51, 51, 0.2)',
+                    'rgba(30, 210, 94, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(51, 204, 255, 1)',
+                    'rgba(212, 61, 53, 1)',
+                    'rgba(254, 8, 98, 1)',
+                    'rgba(0, 87, 204, 1)',
+                    'rgba(50, 213, 79, 1)',
+                    'rgba(112, 133, 214, 1)',
+                    'rgba(212, 61, 53, 1)',
+                    'rgba(250, 152, 242, 1)',
+                    'rgba(244, 72, 49, 1)',
+                    'rgba(6, 193, 103, 1)',
+                    'rgba(4, 30, 91, 1)',
+                    'rgba(51, 51, 51, 1)',
+                    'rgba(30, 210, 94, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Temps d\'utilisation (heures)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Applications'
+                        }
+                    }
+                },
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                let hours = Math.floor(tooltipItem.raw);
+                                let minutes = Math.round((tooltipItem.raw - hours) * 60);
+                                return hours + ' h ' + minutes + ' min';
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const barChart = new Chart(
+            document.getElementById('second-week-chart'),
+            config
+        );
+    </script>
+</body>
+
+</html>

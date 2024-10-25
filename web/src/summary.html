@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./styles/summary.css">
+	<title>Data biographie - Résumé</title>
+</head>
+
+<body>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	<header class="header">
+		<nav class="navigation">
+			<a class="link" href="./index.html">Prologue</a>
+			<a class="link" href="./first-week.html">Semaine 1</a>
+			<a class="link" href="./second-week.html">Semaine 2</a>
+			<a class="link" href="./third-week.html">Semaine 3</a>
+			<a class="link active" href="#">Résumé</a>
+		</nav>
+	</header>
+
+	<div class="content">
+		<div class="content-wrapper">
+			<p>Au terme de ces trois semaines d'observation, il est frappant de constater combien mon téléphone s'est
+				intégré dans ma vie, à la fois comme outil de gestion et comme espace de détente. Cette introspection a
+				souligné l'ambivalence de ma relation avec cet appareil : parfois source de distraction et d'évasion, il
+				s'avère aussi être un soutien organisationnel irremplaçable. J'ai pris conscience de certaines habitudes
+				et automatismes qui, bien que souvent anodins, rythment mes journées et trahissent parfois une
+				dépendance plus forte que je ne l'imaginais. Finalement, ce journal numérique révèle mon rapport
+				complexe avec un objet que je ne cherche ni à diaboliser ni à glorifier, mais dont j'essaie simplement
+				de comprendre la place dans mon quotidien.</p>
+
+				<div>
+					<canvas id="three-weeks-chart"></canvas>
+				</div>
+		</div>
+	</div>
+
+	<script>
+		const labels = [
+            'Waze', 
+            'Maps', 
+            'Instagram', 
+            'Messages', 
+            'WhatsApp', 
+            'Discord', 
+            'Google', 
+            'TimeCalendar', 
+            'Jow',
+            'Uber Eats', 
+            'Disney+', 
+            'Sudoku', 
+            'Spotify', 
+        ];
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Temps d\'utilisation (heures)',
+                data: [
+                    24 + 7 / 60, //Waze
+                    1 + 57 / 60, //Maps
+                    17 + 52 / 60, //Insta
+                    5 + 7 / 60, //Msg
+                    2 + 36 / 60, //WhatsApp
+                    2 + 47 / 60, //Discord
+                    1 + 45 / 60, //Google
+                    30 / 60, //timecalandar
+                    17 / 60, //jow
+                    43 / 60, //Ubereats
+                    40 / 60, //disney+
+                    39 / 60, //sudoku
+                    51 / 60, //Spotify
+                ],
+                backgroundColor: [
+                    'rgba(51, 204, 255, 0.2)',
+                    'rgba(212, 61, 53, 0.2)',
+                    'rgba(254, 8, 98, 0.2)',
+                    'rgba(0, 87, 204, 0.2)',
+                    'rgba(50, 213, 79, 0.2)',
+                    'rgba(112, 133, 214, 0.2)',
+                    'rgba(212, 61, 53, 0.2)',
+                    'rgba(250, 152, 242, 0.2)',
+                    'rgba(244, 72, 49, 0.2)',
+                    'rgba(6, 193, 103, 0.2)',
+                    'rgba(4, 30, 91, 0.2)',
+                    'rgba(51, 51, 51, 0.2)',
+                    'rgba(30, 210, 94, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(51, 204, 255, 1)',
+                    'rgba(212, 61, 53, 1)',
+                    'rgba(254, 8, 98, 1)',
+                    'rgba(0, 87, 204, 1)',
+                    'rgba(50, 213, 79, 1)',
+                    'rgba(112, 133, 214, 1)',
+                    'rgba(212, 61, 53, 1)',
+                    'rgba(250, 152, 242, 1)',
+                    'rgba(244, 72, 49, 1)',
+                    'rgba(6, 193, 103, 1)',
+                    'rgba(4, 30, 91, 1)',
+                    'rgba(51, 51, 51, 1)',
+                    'rgba(30, 210, 94, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Temps d\'utilisation (heures)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Applications'
+                        }
+                    }
+                },
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                let hours = Math.floor(tooltipItem.raw);
+                                let minutes = Math.round((tooltipItem.raw - hours) * 60);
+                                return hours + ' h ' + minutes + ' min';
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const barChart = new Chart(
+            document.getElementById('three-weeks-chart'),
+            config
+        );
+	</script>
+</body>
+
+</html>
